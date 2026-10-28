@@ -1,0 +1,362 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:certificate_name",
+ "creation": "2026-09-08 10:40:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "purpose_section",
+  "certificate_name",
+  "purpose",
+  "owner_type",
+  "column_break_purpose",
+  "openas2_instance",
+  "x509_alias",
+  "certificate_type",
+  "status",
+  "identity_section",
+  "common_name",
+  "organization",
+  "column_break_identity",
+  "valid_from",
+  "valid_until",
+  "validity_days",
+  "expiry_info",
+  "own_keypair_section",
+  "key_size",
+  "keystore_password",
+  "column_break_keypair",
+  "keystore_path",
+  "private_key_stored",
+  "generation_notes",
+  "public_exchange_section",
+  "certificate_file",
+  "public_cert_fingerprint",
+  "column_break_exchange",
+  "exchange_partner",
+  "exchange_status",
+  "exchange_notes",
+  "notes_section",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "purpose_section",
+   "fieldtype": "Section Break",
+   "label": "Certificate Purpose"
+  },
+  {
+   "fieldname": "certificate_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Certificate Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "Own Key Pair",
+   "description": "Own Key Pair = create private+public for your OpenAS2. Partner Public = import only their public cert to exchange.",
+   "fieldname": "purpose",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Purpose",
+   "options": "Own Key Pair\nPartner Public Certificate",
+   "reqd": 1
+  },
+  {
+   "fieldname": "owner_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Company / TMS",
+   "options": "\nShipper\nBroker\nCarrier\nCompanyC",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_purpose",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Optional link to the OpenAS2 Instance that will use this cert.",
+   "fieldname": "openas2_instance",
+   "fieldtype": "Link",
+   "options": "OpenAS2 Instance",
+   "label": "OpenAS2 Instance"
+  },
+  {
+   "description": "Alias used in OpenAS2 partnerships.xml (x509_alias).",
+   "fieldname": "x509_alias",
+   "fieldtype": "Data",
+   "label": "X509 Alias",
+   "reqd": 1
+  },
+  {
+   "default": "Both",
+   "fieldname": "certificate_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Certificate Type",
+   "options": "Signing\nEncryption\nBoth",
+   "reqd": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Draft\nActive\nExpired\nRevoked",
+   "reqd": 1
+  },
+  {
+   "fieldname": "identity_section",
+   "fieldtype": "Section Break",
+   "label": "Identity / Validity"
+  },
+  {
+   "fieldname": "common_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Common Name (CN)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "organization",
+   "fieldtype": "Data",
+   "label": "Organization (O)"
+  },
+  {
+   "fieldname": "column_break_identity",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "valid_from",
+   "fieldtype": "Date",
+   "label": "Valid From",
+   "read_only": 1
+  },
+  {
+   "fieldname": "valid_until",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Valid Until",
+   "read_only": 1
+  },
+  {
+   "default": "825",
+   "depends_on": "eval:doc.purpose=='Own Key Pair'",
+   "description": "Used when generating a new key pair.",
+   "fieldname": "validity_days",
+   "fieldtype": "Int",
+   "label": "Validity Days",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "expiry_info",
+   "fieldtype": "Small Text",
+   "label": "Expiry Information",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.purpose=='Own Key Pair'",
+   "fieldname": "own_keypair_section",
+   "fieldtype": "Section Break",
+   "label": "Create Your Key Pair (Private + Public)"
+  },
+  {
+   "default": "2048",
+   "fieldname": "key_size",
+   "fieldtype": "Select",
+   "label": "Key Size",
+   "options": "2048\n4096"
+  },
+  {
+   "description": "Used only to create the PKCS12 file. Prefer a strong password; it is stored encrypted in Frappe, not shown in lists.",
+   "fieldname": "keystore_password",
+   "fieldtype": "Password",
+   "label": "Keystore Password"
+  },
+  {
+   "fieldname": "column_break_keypair",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Path to the PKCS12 (.p12) on disk. Private key stays in this file — never pasted into Frappe fields.",
+   "fieldname": "keystore_path",
+   "fieldtype": "Data",
+   "label": "Keystore Path (.p12)",
+   "length": 500,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "private_key_stored",
+   "fieldtype": "Check",
+   "label": "Private Key File Created",
+   "read_only": 1
+  },
+  {
+   "fieldname": "generation_notes",
+   "fieldtype": "Small Text",
+   "label": "Generation Notes",
+   "read_only": 1
+  },
+  {
+   "fieldname": "public_exchange_section",
+   "fieldtype": "Section Break",
+   "label": "Public Certificate Exchange"
+  },
+  {
+   "description": "Public certificate only (.cer / .crt / .pem). Share this with your partner. For Partner Public purpose, attach the file they sent you.",
+   "fieldname": "certificate_file",
+   "fieldtype": "Attach",
+   "label": "Public Certificate File"
+  },
+  {
+   "fieldname": "public_cert_fingerprint",
+   "fieldtype": "Data",
+   "label": "Public Cert Fingerprint (SHA-256)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_exchange",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Partner you are exchanging this public certificate with.",
+   "fieldname": "exchange_partner",
+   "fieldtype": "Link",
+   "options": "AS2 Partner",
+   "label": "Exchange Partner"
+  },
+  {
+   "default": "Not Shared",
+   "fieldname": "exchange_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Exchange Status",
+   "options": "Not Shared\nReady to Share\nShared With Partner\nPartner Cert Imported"
+  },
+  {
+   "fieldname": "exchange_notes",
+   "fieldtype": "Small Text",
+   "label": "Exchange Notes"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-18 14:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "OpenAS2 Manager",
+ "name": "AS2 Certificate",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 0,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "OpenAS2 Broker User",
+   "share": 0,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 0,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "OpenAS2 Shipper User",
+   "share": 0,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 0,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "OpenAS2 Carrier User",
+   "share": 0,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 0,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "OpenAS2 CompanyC User",
+   "share": 0,
+   "write": 1
+  }
+ ],
+ "quick_entry": 0,
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "search_fields": "certificate_name,common_name,owner_type,x509_alias",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Blue",
+   "title": "Draft"
+  },
+  {
+   "color": "Green",
+   "title": "Active"
+  },
+  {
+   "color": "Orange",
+   "title": "Expired"
+  },
+  {
+   "color": "Red",
+   "title": "Revoked"
+  }
+ ],
+ "title_field": "certificate_name",
+ "track_changes": 1
+}

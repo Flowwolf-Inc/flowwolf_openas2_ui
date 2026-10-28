@@ -1,0 +1,238 @@
+{
+ "actions": [],
+ "allow_copy": 0,
+ "allow_import": 0,
+ "autoname": "OED-.YYYY.-.#####",
+ "creation": "2026-09-23 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "tms",
+  "instance",
+  "tms_doc_name",
+  "column_break_ids",
+  "file_name",
+  "transaction_type",
+  "status",
+  "section_meta",
+  "direction",
+  "sent_from",
+  "received_by",
+  "partner_name",
+  "reference_number",
+  "as2_message_id",
+  "as2_status",
+  "mdn_status",
+  "column_break_meta",
+  "document_timestamp",
+  "last_synced",
+  "tms_url",
+  "summary",
+  "section_payload",
+  "edi_content",
+  "json_content"
+ ],
+ "fields": [
+  {
+   "fieldname": "tms",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "TMS",
+   "options": "Shipper\nBroker\nCarrier\nCompanyC",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "instance",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Instance",
+   "options": "OpenAS2 Instance",
+   "read_only": 1
+  },
+  {
+   "description": "Document name on the remote TMS site.",
+   "fieldname": "tms_doc_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_global_search": 1,
+   "label": "TMS Document",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ids",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "file_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_global_search": 1,
+   "label": "File Name",
+   "read_only": 1
+  },
+  {
+   "description": "All TMS EDI types: 204 Load Tender, 990 Response, 214 Status, 210 Freight Invoice, 810 Invoice, 820 Payment.",
+   "fieldname": "transaction_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Transaction Type",
+   "options": "\n204\n990\n214\n210\n810\n820",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_meta",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "direction",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Direction",
+   "options": "\nOutbound\nInbound",
+   "read_only": 1
+  },
+  {
+   "description": "AS2 / trading party that sent this document.",
+   "fieldname": "sent_from",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Sent From",
+   "read_only": 1
+  },
+  {
+   "description": "AS2 / trading party that received this document.",
+   "fieldname": "received_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Received By",
+   "read_only": 1
+  },
+  {
+   "fieldname": "partner_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Partner",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reference_number",
+   "fieldtype": "Data",
+   "label": "Reference Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "as2_message_id",
+   "fieldtype": "Data",
+   "label": "AS2 Message ID",
+   "length": 255,
+   "read_only": 1
+  },
+  {
+   "fieldname": "as2_status",
+   "fieldtype": "Data",
+   "label": "AS2 Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mdn_status",
+   "fieldtype": "Data",
+   "label": "MDN Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_meta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "document_timestamp",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Document Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_synced",
+   "fieldtype": "Datetime",
+   "label": "Last Synced",
+   "read_only": 1
+  },
+  {
+   "description": "Absolute URL to open this document on the TMS desk.",
+   "fieldname": "tms_url",
+   "fieldtype": "Data",
+   "label": "TMS URL",
+   "length": 255,
+   "read_only": 1
+  },
+  {
+   "fieldname": "summary",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Summary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_payload",
+   "fieldtype": "Section Break",
+   "label": "EDI Payload"
+  },
+  {
+   "description": "Raw EDI / X12 content mirrored from the TMS EDI Document.",
+   "fieldname": "edi_content",
+   "fieldtype": "Code",
+   "label": "EDI Content",
+   "options": "Text",
+   "read_only": 1
+  },
+  {
+   "description": "Structured JSON representation of the EDI content.",
+   "fieldname": "json_content",
+   "fieldtype": "Code",
+   "label": "JSON Content",
+   "options": "JSON",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-24 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "OpenAS2 Manager",
+ "name": "OpenAS2 EDI Document",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 0
+  }
+ ],
+ "sort_field": "document_timestamp",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "summary",
+ "track_changes": 0
+}

@@ -1,0 +1,332 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:partnership_name",
+ "creation": "2026-09-08 11:40:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "partnership_section",
+  "partnership_name",
+  "instance",
+  "status",
+  "column_break_header",
+  "direction_hint",
+  "partners_section",
+  "local_partner",
+  "local_certificate",
+  "column_break_partners",
+  "remote_partner",
+  "remote_certificate",
+  "identity_section",
+  "local_partner_name",
+  "local_as2_id",
+  "local_x509_alias",
+  "column_break_identity",
+  "remote_partner_name",
+  "remote_as2_id",
+  "remote_x509_alias",
+  "remote_url",
+  "security_section",
+  "encryption_enabled",
+  "signing_enabled",
+  "column_break_mdn",
+  "mdn_enabled",
+  "mdn_mode",
+  "notes_section",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "partnership_section",
+   "fieldtype": "Section Break",
+   "label": "Partnership"
+  },
+  {
+   "description": "Usually Local-to-Remote, e.g. Broker-to-Carrier.",
+   "fieldname": "partnership_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Partnership Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "description": "Which OpenAS2 instance owns this outbound partnership.",
+   "fieldname": "instance",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "OpenAS2 Instance",
+   "options": "OpenAS2 Instance",
+   "reqd": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Draft\nActive\nInactive",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_header",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "direction_hint",
+   "fieldtype": "Small Text",
+   "label": "How to create",
+   "read_only": 1
+  },
+  {
+   "fieldname": "partners_section",
+   "fieldtype": "Section Break",
+   "label": "Select Partners (Required)"
+  },
+  {
+   "description": "Your side of the AS2 exchange (sender).",
+   "fieldname": "local_partner",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Local Partner",
+   "options": "AS2 Partner",
+   "reqd": 1
+  },
+  {
+   "description": "Optional — fills Local X509 Alias from the certificate.",
+   "fieldname": "local_certificate",
+   "fieldtype": "Link",
+   "label": "Local Certificate",
+   "options": "AS2 Certificate"
+  },
+  {
+   "fieldname": "column_break_partners",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Trading partner you send to (receiver).",
+   "fieldname": "remote_partner",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Remote Partner",
+   "options": "AS2 Partner",
+   "reqd": 1
+  },
+  {
+   "description": "Optional — fills Remote X509 Alias from their public certificate.",
+   "fieldname": "remote_certificate",
+   "fieldtype": "Link",
+   "label": "Remote Certificate",
+   "options": "AS2 Certificate"
+  },
+  {
+   "description": "These map to OpenAS2 partnerships.xml &lt;partner&gt; / &lt;partnership&gt; attributes. Filled from partners; edit only if needed.",
+   "fieldname": "identity_section",
+   "fieldtype": "Section Break",
+   "label": "OpenAS2 Identity (Required)"
+  },
+  {
+   "description": "Matches &lt;partner name&gt; / &lt;sender name&gt;",
+   "fieldname": "local_partner_name",
+   "fieldtype": "Data",
+   "label": "Local Partner Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "local_as2_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Local AS2 ID",
+   "reqd": 1
+  },
+  {
+   "description": "Keystore alias for your private/public cert",
+   "fieldname": "local_x509_alias",
+   "fieldtype": "Data",
+   "label": "Local X509 Alias",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_identity",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Matches &lt;partner name&gt; / &lt;receiver name&gt;",
+   "fieldname": "remote_partner_name",
+   "fieldtype": "Data",
+   "label": "Remote Partner Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "remote_as2_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Remote AS2 ID",
+   "reqd": 1
+  },
+  {
+   "description": "Keystore alias for partner public cert",
+   "fieldname": "remote_x509_alias",
+   "fieldtype": "Data",
+   "label": "Remote X509 Alias",
+   "reqd": 1
+  },
+  {
+   "description": "Partner AS2 endpoint (as2_url in partnerships.xml)",
+   "fieldname": "remote_url",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Remote AS2 URL",
+   "length": 255,
+   "options": "URL",
+   "reqd": 1
+  },
+  {
+   "fieldname": "security_section",
+   "fieldtype": "Section Break",
+   "label": "Security & MDN"
+  },
+  {
+   "default": "1",
+   "fieldname": "encryption_enabled",
+   "fieldtype": "Check",
+   "label": "Encryption Enabled"
+  },
+  {
+   "default": "1",
+   "fieldname": "signing_enabled",
+   "fieldtype": "Check",
+   "label": "Signing Enabled"
+  },
+  {
+   "fieldname": "column_break_mdn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "mdn_enabled",
+   "fieldtype": "Check",
+   "label": "MDN Enabled"
+  },
+  {
+   "default": "Synchronous",
+   "depends_on": "eval:doc.mdn_enabled",
+   "fieldname": "mdn_mode",
+   "fieldtype": "Select",
+   "label": "MDN Mode",
+   "mandatory_depends_on": "eval:doc.mdn_enabled",
+   "options": "\nSynchronous\nAsynchronous"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-18 14:40:00.000000",
+ "modified_by": "Administrator",
+ "module": "OpenAS2 Manager",
+ "name": "OpenAS2 Partnership",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 0,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "OpenAS2 Broker User",
+   "share": 0,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 0,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "OpenAS2 Shipper User",
+   "share": 0,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 0,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "OpenAS2 Carrier User",
+   "share": 0,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 0,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "OpenAS2 CompanyC User",
+   "share": 0,
+   "write": 1
+  }
+ ],
+ "quick_entry": 0,
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "search_fields": "partnership_name,local_as2_id,remote_as2_id,local_partner,remote_partner",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Blue",
+   "title": "Draft"
+  },
+  {
+   "color": "Green",
+   "title": "Active"
+  },
+  {
+   "color": "Gray",
+   "title": "Inactive"
+  }
+ ],
+ "title_field": "partnership_name",
+ "track_changes": 1
+}

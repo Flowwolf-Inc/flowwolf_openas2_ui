@@ -1,0 +1,9 @@
+agent.env
+**/agent.env
+service/*.exe
+service/OpenAS2RuntimeAgent.exe
+logs/
+*.log
+__pycache__/
+*.pyc
+.pytest_cache/

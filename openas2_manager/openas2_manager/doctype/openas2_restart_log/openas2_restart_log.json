@@ -1,0 +1,162 @@
+{
+ "actions": [],
+ "autoname": "ORL-.YYYY.-.#####",
+ "creation": "2026-09-08 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "instance",
+  "requested_by",
+  "requested_at",
+  "column_break_timing",
+  "started_at",
+  "completed_at",
+  "result",
+  "process_status",
+  "tcp_status",
+  "as2_status",
+  "summary",
+  "error_message",
+  "discovery_section",
+  "discovery_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "instance",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Instance",
+   "options": "OpenAS2 Instance",
+   "reqd": 1
+  },
+  {
+   "fieldname": "requested_by",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Requested By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "requested_at",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Requested At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_timing",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "started_at",
+   "fieldtype": "Datetime",
+   "label": "Started At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "completed_at",
+   "fieldtype": "Datetime",
+   "label": "Completed At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "result",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Result",
+   "options": "Success\nFailed\nNot Available",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "process_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Process Status",
+   "options": "\nRunning\nStopped\nFailed\nUnknown",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tcp_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "TCP Status",
+   "options": "\nReachable\nNot Reachable\nNot Checked",
+   "read_only": 1
+  },
+  {
+   "default": "Not Verified",
+   "fieldname": "as2_status",
+   "fieldtype": "Data",
+   "label": "AS2 Protocol",
+   "read_only": 1
+  },
+  {
+   "fieldname": "summary",
+   "fieldtype": "Small Text",
+   "label": "Summary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "error_message",
+   "fieldtype": "Small Text",
+   "label": "Error Message",
+   "read_only": 1
+  },
+  {
+   "fieldname": "discovery_section",
+   "fieldtype": "Section Break",
+   "label": "Discovery Notes"
+  },
+  {
+   "fieldname": "discovery_notes",
+   "fieldtype": "Small Text",
+   "label": "Discovery Notes",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-08 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "OpenAS2 Manager",
+ "name": "OpenAS2 Restart Log",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Green",
+   "title": "Success"
+  },
+  {
+   "color": "Red",
+   "title": "Failed"
+  },
+  {
+   "color": "Orange",
+   "title": "Not Available"
+  }
+ ],
+ "title_field": "summary",
+ "track_changes": 1
+}

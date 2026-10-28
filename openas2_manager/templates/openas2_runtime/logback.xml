@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration>
+
+<configuration scan="true" scanPeriod="30 seconds">
+    <import class="ch.qos.logback.classic.encoder.PatternLayoutEncoder"/>
+    <import class="ch.qos.logback.core.FileAppender"/>
+    <timestamp key="byDay" datePattern="yyyyMMdd"/>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+	    <file>${OPENAS2_LOG_DIR}/log-${byDay}.txt</file>
+	    <encoder>
+	      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{60} -%kvp- %msg%n</pattern>
+	    </encoder>
+	</appender>
+
+    <import class="ch.qos.logback.core.ConsoleAppender"/>
+    <appender name="CONSOLE" class="ConsoleAppender">
+        <encoder class="PatternLayoutEncoder">
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{60} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="${OPENAS2_LOG_LEVEL:-INFO}">
+        <appender-ref ref="FILE" />
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>

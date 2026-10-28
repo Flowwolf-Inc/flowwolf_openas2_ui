@@ -1,0 +1,10 @@
+*.pyc
+*.py~
+__pycache__/
+.pytest_cache/
+*.DS_Store
+*.log
+agent.env
+**/agent.env
+runtime_agent/logs/
+runtime_agent/service/*.exe

@@ -1,0 +1,216 @@
+{
+ "actions": [],
+ "allow_copy": 0,
+ "allow_import": 0,
+ "autoname": "OML-.YYYY.-.#####",
+ "creation": "2026-09-08 16:40:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "instance",
+  "direction",
+  "partner",
+  "column_break_ids",
+  "local_as2_id",
+  "remote_as2_id",
+  "transaction_type",
+  "section_message",
+  "message_id",
+  "status",
+  "mdn_status",
+  "timestamp",
+  "column_break_meta",
+  "file_name",
+  "source",
+  "raw_reference",
+  "edi_document",
+  "error_message",
+  "summary"
+ ],
+ "fields": [
+  {
+   "fieldname": "instance",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Instance",
+   "options": "OpenAS2 Instance",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "direction",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Direction",
+   "options": "\nInbound\nOutbound",
+   "read_only": 1
+  },
+  {
+   "fieldname": "partner",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Partner",
+   "options": "OpenAS2 Partnership",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ids",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "local_as2_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Local AS2 ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "remote_as2_id",
+   "fieldtype": "Data",
+   "label": "Remote AS2 ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "transaction_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Transaction Type",
+   "options": "\n204\n990\n214\n210\n810\n820\nUnknown",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_message",
+   "fieldtype": "Section Break",
+   "label": "Message"
+  },
+  {
+   "fieldname": "message_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Message ID",
+   "length": 255,
+   "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "\nReceived\nSent\nSuccess\nFailed\nDuplicate\nUnknown",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mdn_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "MDN Status",
+   "options": "\nNot Required\nPending\nReceived\nFailed\nUnknown",
+   "read_only": 1
+  },
+  {
+   "fieldname": "timestamp",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Timestamp",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_meta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "file_name",
+   "fieldtype": "Data",
+   "label": "File Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "source",
+   "fieldtype": "Data",
+   "label": "Source",
+   "read_only": 1
+  },
+  {
+   "description": "Path or reference only — never credentials.",
+   "fieldname": "raw_reference",
+   "fieldtype": "Data",
+   "label": "Raw Reference",
+   "length": 255,
+   "read_only": 1
+  },
+  {
+   "description": "Soft reference to TMS EDI Document name (local DocType or mirrored from remote TMS).",
+   "fieldname": "edi_document",
+   "fieldtype": "Data",
+   "label": "EDI Document",
+   "read_only": 1
+  },
+  {
+   "fieldname": "error_message",
+   "fieldtype": "Small Text",
+   "label": "Error Message",
+   "read_only": 1
+  },
+  {
+   "fieldname": "summary",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Summary",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-08 16:40:00.000000",
+ "modified_by": "Administrator",
+ "module": "OpenAS2 Manager",
+ "name": "OpenAS2 Message Log",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 0
+  }
+ ],
+ "sort_field": "timestamp",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Green",
+   "title": "Success"
+  },
+  {
+   "color": "Red",
+   "title": "Failed"
+  },
+  {
+   "color": "Orange",
+   "title": "Duplicate"
+  },
+  {
+   "color": "Blue",
+   "title": "Received"
+  },
+  {
+   "color": "Cyan",
+   "title": "Sent"
+  }
+ ],
+ "title_field": "summary",
+ "track_changes": 0
+}

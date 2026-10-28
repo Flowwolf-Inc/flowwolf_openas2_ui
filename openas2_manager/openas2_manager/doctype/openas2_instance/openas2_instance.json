@@ -1,0 +1,574 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2026-09-08 11:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "identity_section",
+  "instance_name",
+  "instance_type",
+  "as2_id",
+  "column_break_identity",
+  "host",
+  "status",
+  "mdn_mode",
+  "listeners_section",
+  "http_enabled",
+  "http_port",
+  "column_break_http",
+  "https_enabled",
+  "https_port",
+  "mdn_listeners_section",
+  "mdn_enabled",
+  "mdn_http_enabled",
+  "mdn_http_port",
+  "column_break_mdn",
+  "mdn_https_enabled",
+  "mdn_https_port",
+  "async_mdn_url",
+  "keystore_section",
+  "as2_keystore_path",
+  "x509_alias",
+  "column_break_keystore",
+  "as2_keystore_password",
+  "ssl_keystore_path",
+  "certificate_status",
+  "publish_url_section",
+  "protocol",
+  "port",
+  "published_as2_url",
+  "ops_section",
+  "lifecycle_status",
+  "provision_source",
+  "connection_status",
+  "last_tested",
+  "column_break_ops",
+  "health_port",
+  "tracking_port",
+  "paths_section",
+  "openas2_home",
+  "windows_home",
+  "inbox_path",
+  "outbox_path",
+  "instance_slug",
+  "tms_section",
+  "tms_site_url",
+  "runtime_section",
+  "control_mode",
+  "service_name",
+  "provisioned_on",
+  "runtime_pid",
+  "process_status",
+  "port_status",
+  "openas2_health",
+  "last_health_check",
+  "last_error",
+  "notes_section",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "identity_section",
+   "fieldtype": "Section Break",
+   "label": "Identity"
+  },
+  {
+   "bold": 1,
+   "description": "Display name for this OpenAS2 instance (shown in lists and links).",
+   "fieldname": "instance_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "instance_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Instance Type",
+   "options": "Shipper\nBroker\nCarrier\nCompanyC",
+   "reqd": 1
+  },
+  {
+   "description": "Your AS2-From / AS2-To identity shared with partners.",
+   "fieldname": "as2_id",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "AS2 ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_identity",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "localhost",
+   "fieldname": "host",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Host",
+   "reqd": 1
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Active\nInactive\nError",
+   "reqd": 1
+  },
+  {
+   "default": "Synchronous",
+   "description": "Asynchronous requires MDN listener enabled and an async MDN URL partners can reach.",
+   "fieldname": "mdn_mode",
+   "fieldtype": "Select",
+   "label": "MDN Mode",
+   "options": "Synchronous\nAsynchronous"
+  },
+  {
+   "fieldname": "listeners_section",
+   "fieldtype": "Section Break",
+   "label": "AS2 Listeners"
+  },
+  {
+   "default": "1",
+   "fieldname": "http_enabled",
+   "fieldtype": "Check",
+   "label": "Enable HTTP"
+  },
+  {
+   "depends_on": "eval:doc.http_enabled",
+   "description": "module.AS2ReceiverModule.http.port",
+   "fieldname": "http_port",
+   "fieldtype": "Int",
+   "label": "HTTP Port",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "column_break_http",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "https_enabled",
+   "fieldtype": "Check",
+   "label": "Enable HTTPS"
+  },
+  {
+   "depends_on": "eval:doc.https_enabled",
+   "description": "module.AS2ReceiverModule.https.port — requires SSL keystore.",
+   "fieldname": "https_port",
+   "fieldtype": "Int",
+   "label": "HTTPS Port",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "mdn_listeners_section",
+   "fieldtype": "Section Break",
+   "label": "MDN Listeners"
+  },
+  {
+   "default": "1",
+   "description": "Master switch for MDN expectation on this instance.",
+   "fieldname": "mdn_enabled",
+   "fieldtype": "Check",
+   "label": "MDN Enabled"
+  },
+  {
+   "default": "1",
+   "depends_on": "eval:doc.mdn_enabled",
+   "fieldname": "mdn_http_enabled",
+   "fieldtype": "Check",
+   "label": "Enable MDN HTTP"
+  },
+  {
+   "depends_on": "eval:doc.mdn_enabled && doc.mdn_http_enabled",
+   "fieldname": "mdn_http_port",
+   "fieldtype": "Int",
+   "label": "MDN HTTP Port",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "column_break_mdn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "depends_on": "eval:doc.mdn_enabled",
+   "fieldname": "mdn_https_enabled",
+   "fieldtype": "Check",
+   "label": "Enable MDN HTTPS"
+  },
+  {
+   "depends_on": "eval:doc.mdn_enabled && doc.mdn_https_enabled",
+   "fieldname": "mdn_https_port",
+   "fieldtype": "Int",
+   "label": "MDN HTTPS Port",
+   "non_negative": 1
+  },
+  {
+   "depends_on": "eval:doc.mdn_enabled && doc.mdn_mode=='Asynchronous'",
+   "description": "URL partners use to post async MDNs back to you (often your MDN HTTPS/HTTP URL).",
+   "fieldname": "async_mdn_url",
+   "fieldtype": "Data",
+   "label": "Async MDN URL",
+   "length": 500
+  },
+  {
+   "fieldname": "keystore_section",
+   "fieldtype": "Section Break",
+   "label": "Keystore / Certificates"
+  },
+  {
+   "description": "AS2 PKCS12 path relative to OpenAS2 home or absolute (e.g. %home%/broker_as2.p12).",
+   "fieldname": "as2_keystore_path",
+   "fieldtype": "Data",
+   "label": "AS2 Keystore Path",
+   "length": 500
+  },
+  {
+   "description": "Alias of your private key in the AS2 keystore (partner x509_alias for this org).",
+   "fieldname": "x509_alias",
+   "fieldtype": "Data",
+   "label": "X509 Alias"
+  },
+  {
+   "fieldname": "column_break_keystore",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Optional. Used only when applying/generating keystore; prefer env/site config for production.",
+   "fieldname": "as2_keystore_password",
+   "fieldtype": "Password",
+   "label": "AS2 Keystore Password"
+  },
+  {
+   "description": "SSL server keystore for HTTPS listeners (e.g. %home%/ssl_certs.jks).",
+   "fieldname": "ssl_keystore_path",
+   "fieldtype": "Data",
+   "label": "SSL Keystore Path",
+   "length": 500
+  },
+  {
+   "default": "Unknown",
+   "fieldname": "certificate_status",
+   "fieldtype": "Select",
+   "label": "Certificate Status",
+   "options": "Unknown\nDeferred\nConfigured\nMissing"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "publish_url_section",
+   "fieldtype": "Section Break",
+   "label": "URL to share with partners"
+  },
+  {
+   "default": "HTTPS",
+   "description": "Which listener URL you publish as the primary AS2 receive URL.",
+   "fieldname": "protocol",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Primary Protocol",
+   "options": "HTTP\nHTTPS",
+   "reqd": 1
+  },
+  {
+   "description": "Primary port mirrored from HTTP or HTTPS based on Primary Protocol.",
+   "fieldname": "port",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Primary Port",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "description": "Give this URL to partners as your as2_url.",
+   "fieldname": "published_as2_url",
+   "fieldtype": "Data",
+   "label": "Published AS2 URL",
+   "length": 500,
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "collapsible_depends_on": "eval:false",
+   "fieldname": "ops_section",
+   "fieldtype": "Section Break",
+   "label": "Operations"
+  },
+  {
+   "default": "Unknown",
+   "fieldname": "lifecycle_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Lifecycle Status",
+   "options": "Unknown\nProvisioning\nStopped\nStarting\nRunning\nStopping\nFailed"
+  },
+  {
+   "default": "External",
+   "fieldname": "provision_source",
+   "fieldtype": "Select",
+   "label": "Provision Source",
+   "options": "External\nManager Provisioned"
+  },
+  {
+   "default": "Unknown",
+   "fieldname": "connection_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Connection Status",
+   "options": "Unknown\nConnected\nFailed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_tested",
+   "fieldtype": "Datetime",
+   "label": "Last Tested",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ops",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "health_port",
+   "fieldtype": "Int",
+   "label": "Health Port",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "tracking_port",
+   "fieldtype": "Int",
+   "label": "Tracking Port",
+   "non_negative": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "paths_section",
+   "fieldtype": "Section Break",
+   "label": "Filesystem Paths"
+  },
+  {
+   "description": "OpenAS2 instance home (contains config/).",
+   "fieldname": "openas2_home",
+   "fieldtype": "Data",
+   "label": "OpenAS2 Home",
+   "length": 500
+  },
+  {
+   "fieldname": "windows_home",
+   "fieldtype": "Data",
+   "label": "Windows Home",
+   "length": 500,
+   "read_only": 1
+  },
+  {
+   "fieldname": "inbox_path",
+   "fieldtype": "Data",
+   "label": "Inbox Path",
+   "length": 500
+  },
+  {
+   "fieldname": "outbox_path",
+   "fieldtype": "Data",
+   "label": "Outbox Path",
+   "length": 500
+  },
+  {
+   "fieldname": "instance_slug",
+   "fieldtype": "Data",
+   "label": "Instance Slug",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "runtime_section",
+   "fieldtype": "Section Break",
+   "label": "Runtime Control"
+  },
+  {
+   "default": "none",
+   "fieldname": "control_mode",
+   "fieldtype": "Select",
+   "label": "Control Mode",
+   "options": "none\nagent\nwindows_service\nlinux_start_script"
+  },
+  {
+   "fieldname": "service_name",
+   "fieldtype": "Data",
+   "label": "Service Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "provisioned_on",
+   "fieldtype": "Datetime",
+   "label": "Provisioned On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "runtime_pid",
+   "fieldtype": "Int",
+   "label": "Runtime PID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "process_status",
+   "fieldtype": "Select",
+   "label": "Process Status",
+   "options": "\nUnknown\nStopped\nRunning",
+   "read_only": 1
+  },
+  {
+   "fieldname": "port_status",
+   "fieldtype": "Select",
+   "label": "Port Status",
+   "options": "\nUnknown\nListening\nNot Listening",
+   "read_only": 1
+  },
+  {
+   "fieldname": "openas2_health",
+   "fieldtype": "Data",
+   "label": "OpenAS2 Health",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_health_check",
+   "fieldtype": "Datetime",
+   "label": "Last Health Check",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_error",
+   "fieldtype": "Small Text",
+   "label": "Last Error",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tms_section",
+   "fieldtype": "Section Break",
+   "label": "TMS Desk"
+  },
+  {
+   "description": "Base URL of the owning TMS Frappe site (e.g. http://shipper.local:8000). Used to sync and open EDI Documents. API key/secret stay in site_config.tms_sites.",
+   "fieldname": "tms_site_url",
+   "fieldtype": "Data",
+   "label": "TMS Site URL"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-18 14:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "OpenAS2 Manager",
+ "name": "OpenAS2 Instance",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 0,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "OpenAS2 Broker User",
+   "share": 0,
+   "write": 1
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 0,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "OpenAS2 Shipper User",
+   "share": 0,
+   "write": 1
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 0,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "OpenAS2 Carrier User",
+   "share": 0,
+   "write": 1
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 0,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "OpenAS2 CompanyC User",
+   "share": 0,
+   "write": 1
+  }
+ ],
+ "quick_entry": 0,
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "search_fields": "instance_name,as2_id",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Green",
+   "title": "Active"
+  },
+  {
+   "color": "Gray",
+   "title": "Inactive"
+  },
+  {
+   "color": "Red",
+   "title": "Error"
+  }
+ ],
+ "title_field": "instance_name",
+ "track_changes": 1
+}

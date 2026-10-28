@@ -1,0 +1,23 @@
+# OpenAS2 Runtime Agent — WinSW configuration template
+# Deployed as C:\OpenAS2\agent\service\OpenAS2RuntimeAgent.xml (same basename as the .exe).
+# Token is NOT stored here; run_agent_for_service.ps1 loads C:\OpenAS2\agent\agent.env.
+
+<service>
+  <id>OpenAS2RuntimeAgent</id>
+  <name>OpenAS2 Runtime Agent</name>
+  <description>OpenAS2 Manager Runtime Agent HTTP control plane (port 9475). Starts/stops Manager-provisioned OpenAS2 Java processes under C:\OpenAS2\instances.</description>
+  <executable>powershell.exe</executable>
+  <arguments>-NoProfile -NonInteractive -ExecutionPolicy Bypass -File "%BASE%\run_agent_for_service.ps1"</arguments>
+  <workingdirectory>%BASE%\..</workingdirectory>
+  <logpath>%BASE%\..\logs</logpath>
+  <log mode="roll-by-size">
+    <sizeThreshold>10240</sizeThreshold>
+    <keepFiles>8</keepFiles>
+  </log>
+  <onfailure action="restart" delay="5 sec"/>
+  <onfailure action="restart" delay="10 sec"/>
+  <onfailure action="restart" delay="30 sec"/>
+  <resetfailure>1 hour</resetfailure>
+  <startmode>Automatic</startmode>
+  <stoptimeout>20 sec</stoptimeout>
+</service>

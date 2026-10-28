@@ -1,0 +1,174 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:as2_id",
+ "creation": "2026-09-08 10:05:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "partner_details_section",
+  "partner_name",
+  "partner_type",
+  "column_break_partner",
+  "as2_id",
+  "status",
+  "as2_connection_section",
+  "as2_url",
+  "security_mdn_section",
+  "encryption_enabled",
+  "signing_enabled",
+  "column_break_security",
+  "mdn_enabled",
+  "mdn_mode",
+  "certificate",
+  "notes_section",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "partner_details_section",
+   "fieldtype": "Section Break",
+   "label": "Partner Details"
+  },
+  {
+   "fieldname": "partner_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Partner Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "partner_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Partner Type",
+   "options": "Shipper\nBroker\nCarrier\nCompanyC",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_partner",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "as2_id",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "AS2 ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Active\nInactive",
+   "reqd": 1
+  },
+  {
+   "fieldname": "as2_connection_section",
+   "fieldtype": "Section Break",
+   "label": "AS2 Connection"
+  },
+  {
+   "description": "Partner AS2 endpoint URL (configuration only; no live connection is made yet).",
+   "fieldname": "as2_url",
+   "fieldtype": "Data",
+   "label": "AS2 URL",
+   "length": 255,
+   "options": "URL",
+   "reqd": 1
+  },
+  {
+   "fieldname": "security_mdn_section",
+   "fieldtype": "Section Break",
+   "label": "Security & MDN"
+  },
+  {
+   "default": "0",
+   "fieldname": "encryption_enabled",
+   "fieldtype": "Check",
+   "label": "Encryption Enabled"
+  },
+  {
+   "default": "0",
+   "fieldname": "signing_enabled",
+   "fieldtype": "Check",
+   "label": "Signing Enabled"
+  },
+  {
+   "fieldname": "column_break_security",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "mdn_enabled",
+   "fieldtype": "Check",
+   "label": "MDN Enabled"
+  },
+  {
+   "depends_on": "eval:doc.mdn_enabled",
+   "fieldname": "mdn_mode",
+   "fieldtype": "Select",
+   "label": "MDN Mode",
+   "mandatory_depends_on": "eval:doc.mdn_enabled",
+   "options": "\nSynchronous\nAsynchronous"
+  },
+  {
+   "fieldname": "certificate",
+   "fieldtype": "Link",
+   "label": "Certificate",
+   "options": "AS2 Certificate"
+  },
+  {
+   "fieldname": "notes_section",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-08 10:40:00.000000",
+ "modified_by": "Administrator",
+ "module": "OpenAS2 Manager",
+ "name": "AS2 Partner",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 0,
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "search_fields": "partner_name,as2_id",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "partner_name",
+ "track_changes": 1
+}

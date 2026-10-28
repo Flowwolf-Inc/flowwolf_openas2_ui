@@ -1,0 +1,170 @@
+{
+ "actions": [],
+ "autoname": "OCC-.YYYY.-.#####",
+ "creation": "2026-09-08 11:40:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "instance",
+  "change_type",
+  "partnership",
+  "column_break_meta",
+  "status",
+  "requested_by",
+  "requested_at",
+  "backup_path",
+  "summary",
+  "error_message",
+  "proposal_section",
+  "current_xml",
+  "proposed_xml",
+  "diff_text"
+ ],
+ "fields": [
+  {
+   "fieldname": "instance",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Instance",
+   "options": "OpenAS2 Instance",
+   "reqd": 1
+  },
+  {
+   "fieldname": "change_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Change Type",
+   "options": "Add\nModify\nRemove",
+   "reqd": 1
+  },
+  {
+   "fieldname": "partnership",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Partnership",
+   "options": "OpenAS2 Partnership"
+  },
+  {
+   "fieldname": "column_break_meta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Proposed",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Proposed\nApplied\nFailed\nRolled Back",
+   "reqd": 1
+  },
+  {
+   "fieldname": "requested_by",
+   "fieldtype": "Link",
+   "label": "Requested By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "requested_at",
+   "fieldtype": "Datetime",
+   "label": "Requested At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "backup_path",
+   "fieldtype": "Data",
+   "label": "Backup Path",
+   "length": 500,
+   "read_only": 1
+  },
+  {
+   "fieldname": "summary",
+   "fieldtype": "Small Text",
+   "label": "Summary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "error_message",
+   "fieldtype": "Small Text",
+   "label": "Error Message",
+   "read_only": 1
+  },
+  {
+   "fieldname": "proposal_section",
+   "fieldtype": "Section Break",
+   "label": "Proposal (Redacted)"
+  },
+  {
+   "fieldname": "current_xml",
+   "fieldtype": "Code",
+   "label": "Current Configuration",
+   "options": "XML",
+   "read_only": 1
+  },
+  {
+   "fieldname": "proposed_xml",
+   "fieldtype": "Code",
+   "label": "Proposed Configuration",
+   "options": "XML",
+   "read_only": 1
+  },
+  {
+   "fieldname": "diff_text",
+   "fieldtype": "Code",
+   "label": "Diff",
+   "options": "Text",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 0,
+ "links": [],
+ "modified": "2026-09-08 11:40:00.000000",
+ "modified_by": "Administrator",
+ "module": "OpenAS2 Manager",
+ "name": "OpenAS2 Configuration Change",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "read_only": 0,
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Blue",
+   "title": "Proposed"
+  },
+  {
+   "color": "Green",
+   "title": "Applied"
+  },
+  {
+   "color": "Red",
+   "title": "Failed"
+  },
+  {
+   "color": "Orange",
+   "title": "Rolled Back"
+  }
+ ],
+ "title_field": "summary",
+ "track_changes": 1
+}

@@ -1,0 +1,156 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "RTLOG-.#####",
+ "creation": "2026-09-16 13:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "instance",
+  "action",
+  "result",
+  "column_break_meta",
+  "requested_by",
+  "requested_at",
+  "completed_at",
+  "status_section",
+  "lifecycle_status",
+  "runtime_pid",
+  "process_status",
+  "column_break_health",
+  "port_status",
+  "openas2_health",
+  "summary",
+  "error_message"
+ ],
+ "fields": [
+  {
+   "fieldname": "instance",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Instance",
+   "options": "OpenAS2 Instance",
+   "reqd": 1
+  },
+  {
+   "fieldname": "action",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Action",
+   "options": "Start\nStop\nRestart\nStatus\nHealth\nLogs",
+   "reqd": 1
+  },
+  {
+   "default": "Failed",
+   "fieldname": "result",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Result",
+   "options": "Success\nFailed\nNot Available",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_meta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "requested_by",
+   "fieldtype": "Link",
+   "label": "Requested By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "requested_at",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Requested At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "completed_at",
+   "fieldtype": "Datetime",
+   "label": "Completed At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status_section",
+   "fieldtype": "Section Break",
+   "label": "Observed Status"
+  },
+  {
+   "fieldname": "lifecycle_status",
+   "fieldtype": "Data",
+   "label": "Lifecycle Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "runtime_pid",
+   "fieldtype": "Int",
+   "label": "Runtime PID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "process_status",
+   "fieldtype": "Data",
+   "label": "Process Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_health",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "port_status",
+   "fieldtype": "Data",
+   "label": "Port Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "openas2_health",
+   "fieldtype": "Data",
+   "label": "OpenAS2 Health",
+   "read_only": 1
+  },
+  {
+   "fieldname": "summary",
+   "fieldtype": "Small Text",
+   "label": "Summary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "error_message",
+   "fieldtype": "Small Text",
+   "label": "Error Message",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-16 13:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "OpenAS2 Manager",
+ "name": "OpenAS2 Runtime Log",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 0,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 0
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
